@@ -18,18 +18,27 @@ public class App {
 
         validar(opcao);
 
+        System.out.println("---Listagem de nomes---");
+        listagem.forEach(System.out::println);
+
         System.out.println("---Listagem de nomes masculinos---");
-        List<Pessoa> streamM = listagem.stream()
-                .filter(pessoa -> pessoa.getGenero().equalsIgnoreCase("m"))
-                .collect(toList());
-        streamM.forEach(i->System.out.println(i));
+        getListM().forEach(i->System.out.println(i));
 
         System.out.println("---Listagem de nomes femininos---");
-        List<Pessoa> streamF = listagem.stream()
+        getListF().forEach(i->System.out.println(i));
+
+    }
+
+    public static List<Pessoa> getListF (){
+        return listagem.stream()
                 .filter(pessoa -> pessoa.getGenero().equalsIgnoreCase("f"))
                 .collect(toList());
-        streamF.forEach(i->System.out.println(i));
+    }
 
+    public static List<Pessoa> getListM (){
+        return listagem.stream()
+                .filter(pessoa -> pessoa.getGenero().equalsIgnoreCase("m"))
+                .collect(toList());
     }
 
     private static void validar(String dados) {
@@ -46,5 +55,4 @@ public class App {
                 "Pessoas cadastradas com sucesso!",
                 "Cadastro", JOptionPane.INFORMATION_MESSAGE);
     }
-
 }
